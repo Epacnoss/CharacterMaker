@@ -41,6 +41,10 @@ public class weaponTypes {
     }
     public static Weapon Sickle ()
     {
-        return new Weapon(2, new Money(moneyType.gp, 1), "Sickle", new Damage())
+        return new Weapon(2, new Money(moneyType.gp, 1), "Sickle", new Damage(new Dice(4), weaponType.piercing), "Light");
+    }
+    public static Weapon Spear ()
+    {
+        return new Weapon(3, new Money(moneyType.gp, 1), "Spear", new Damage(new Dice()))
     }
 }
