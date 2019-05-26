@@ -1,0 +1,19 @@
+Window 1:
+Title: Step by Step DnD Character
+Shows completed Model
+Buttons to do steps
+
+win 2:
+Race, Class
+
+win 3:
+age, name, height, weight, alignment, IRL Name
+
+win 4:
+abilitiy scores
+
+win 5:
+Weapons / Armour
+
+win 6:
+backstroy .........
