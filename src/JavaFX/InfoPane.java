@@ -128,7 +128,7 @@ public class InfoPane {
             if(a.getStealth() == stealth.none)
                 steathA = new Label("N/A");
             else
-                steathA = new Label(a.getStealth().toString());
+                steathA = new Label("Str" + a.getStealth());
             GridPane.setConstraints(steathA, 1, 5);
 
             temp.getChildren().addAll(name, weightL, weightA, costL, costA, acL, acA, minStrL, minStrA, stealthL, steathA);
@@ -140,10 +140,46 @@ public class InfoPane {
         hb.getChildren().addAll(nas);
         return hb;
     }
-//    public static HBox showWeapons (Weapon[] weapons)
-    public static void showWeapons (Weapon[] weapons)
+    public static HBox showWeapons (Weapon[] weapons)
     {
+        Node[] nas = new Node[weapons.length];
 
+        int  i = 0;
+        for(Weapon w : weapons)
+        {
+            GridPane temp = new GridPane();
+
+            Label name = new Label(w.getName());
+            GridPane.setConstraints(name, 0, 0, 2, 1);
+
+            Label weightL = new Label("Weight: ");
+            GridPane.setConstraints(weightL, 0, 1);
+            Label weightA = new Label(w.getWeight() + "lbs");
+            GridPane.setConstraints(weightA, 1, 1);
+
+            Label costL = new Label("Cost: ");
+            GridPane.setConstraints(costL, 0, 2);
+            Label costA = new Label(w.getCost().toString());
+            GridPane.setConstraints(costA, 1, 2);
+
+            Label damageL = new Label("Damage: ");
+            GridPane.setConstraints(damageL, 0, 3);
+            Label damageA = new Label(w.getDamage().toString());
+            GridPane.setConstraints(damageA, 1, 3);
+
+            Label propsL = new Label("Properties: ");
+            GridPane.setConstraints(propsL, 0, 4);
+            Label propsA = new Label(w.getProperties());
+            GridPane.setConstraints(propsA, 1, 4, 2, 1);
+
+            temp.getChildren().addAll(name, weightL, weightA, costL, costA, damageL, damageA, propsL, propsA);
+            nas[i] = temp;
+            i++;
+        }
+
+        HBox fin = new HBox(10);
+        fin.getChildren().addAll(nas);
+        return fin;
     }
 
 }

@@ -2,6 +2,8 @@ package Classes.buy.weapons;
 
 import Classes.dice.Dice;
 
+import java.util.StringJoiner;
+
 public class Damage {
 
     private Dice howMuch;
@@ -18,5 +20,10 @@ public class Damage {
 
     public weaponType getWhatType() {
         return whatType;
+    }
+
+    @Override
+    public String toString() {
+        return howMuch.toString() + " " + whatType.toString();
     }
 }

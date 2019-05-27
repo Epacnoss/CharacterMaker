@@ -1,6 +1,7 @@
 package Classes.dice;
 
 import java.util.Random;
+import java.util.StringJoiner;
 
 public class Dice {
 
@@ -39,5 +40,18 @@ public class Dice {
         }
 
         return tot;
+    }
+
+    @Override
+    public String toString() {
+        String basic = sides + "d" + number;;
+
+        if(modifier == 0)
+        {
+            return basic;
+        }else
+        {
+            return basic + modifier;
+        }
     }
 }

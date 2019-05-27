@@ -3,10 +3,14 @@ package JavaFX;
 import Classes.Abilities.abilities;
 import Classes.buy.armour.Armour;
 import Classes.buy.armour.armourTypes;
+import Classes.buy.weapons.Weapon;
+import Classes.buy.weapons.weaponTypes;
 import javafx.application.Application;
 import javafx.geometry.Insets;
+import javafx.geometry.Orientation;
 import javafx.scene.Scene;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Separator;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -25,15 +29,25 @@ public class Main extends Application {
         window.setTitle("DnD Charcter Maker!");
 
         HBox top = InfoPane.showTop("Bob", "Paladin", 1, "Human","Evil-Chaotic", "Boi", 0);
-        GridPane.setConstraints(top, 0, 0);
         VBox abs = InfoPane.showAbilities(new abilities(15, 14, 13, 12, 10, 8));
-        GridPane.setConstraints(abs, 1, 0);
         HBox armour = InfoPane.showArmour(new Armour[] {armourTypes.ChainMail(), armourTypes.Plate()});
-        GridPane.setConstraints(armour, 0, 2);
+        HBox weapons = InfoPane.showWeapons(new Weapon[] {weaponTypes.Mace(), weaponTypes.Quarterstaff()});
+        Separator leftNRight = new Separator();
+        leftNRight.setOrientation(Orientation.VERTICAL);
+        Separator left = new Separator();
+        Separator right = new Separator();
 
-        GridPane fin = new GridPane();
+        VBox leftVBOX = new VBox(20);
+        leftVBOX.getChildren().addAll(top, abs);
+        leftVBOX.getChildren().add(1, left);
+        VBox rightVBOX = new VBox(20);
+        rightVBOX.getChildren().addAll(armour, weapons);
+        rightVBOX.getChildren().add(1,right);
+
+        HBox fin = new HBox(30);
         fin.setPadding(new Insets(20));
-        fin.getChildren().addAll(top, abs, armour);
+        fin.getChildren().addAll(leftVBOX, rightVBOX);
+        fin.getChildren().add(1, leftNRight);
 
 
 
