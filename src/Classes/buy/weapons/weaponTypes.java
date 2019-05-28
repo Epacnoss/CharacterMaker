@@ -1,7 +1,8 @@
 package Classes.buy.weapons;
 
-import Classes.dice.*;
-import Classes.buy.money.*;
+import Classes.buy.money.Money;
+import Classes.buy.money.moneyType;
+import Classes.dice.Dice;
 
 public class weaponTypes {
 
@@ -45,6 +46,10 @@ public class weaponTypes {
     }
     public static Weapon Spear ()
     {
-        return new Weapon(3, new Money(moneyType.gp, 1), "Spear", new Damage(new Dice()))
+        return new Weapon(3, new Money(moneyType.gp, 1), "Spear", new Damage(new Dice(6), weaponType.piercing), "Thrown (range 20/60), versatile (1d8)");
+    }
+
+    public static Weapon LightCrossbow() {
+        return new Weapon(5, new Money(moneyType.gp, 25), "Crossbow, Light", new Damage(new Dice(8), weaponType.piercing), "Ammunition (range 80/120), loading, two-handed");
     }
 }

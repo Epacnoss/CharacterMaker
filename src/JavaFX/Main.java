@@ -1,6 +1,7 @@
 package JavaFX;
 
 import Classes.Abilities.abilities;
+import Classes.Personality;
 import Classes.buy.armour.Armour;
 import Classes.buy.armour.armourTypes;
 import Classes.buy.weapons.Weapon;
@@ -19,8 +20,8 @@ import javafx.stage.Stage;
 
 public class Main extends Application {
 
-    Stage window;
-    Scene s;
+    private Stage window;
+    private Scene s;
 
 
     @Override
@@ -31,18 +32,21 @@ public class Main extends Application {
         HBox top = InfoPane.showTop("Bob", "Paladin", 1, "Human","Evil-Chaotic", "Boi", 0);
         VBox abs = InfoPane.showAbilities(new abilities(15, 14, 13, 12, 10, 8));
         HBox armour = InfoPane.showArmour(new Armour[] {armourTypes.ChainMail(), armourTypes.Plate()});
-        HBox weapons = InfoPane.showWeapons(new Weapon[] {weaponTypes.Mace(), weaponTypes.Quarterstaff()});
+        HBox weapons = InfoPane.showWeapons(new Weapon[]{weaponTypes.LightCrossbow(), weaponTypes.Quarterstaff()});
+        GridPane bg = InfoPane.showBG(new Personality("Sexy and looooovs to have fun", "To sex every lord in the land", "No-one", "His tru love who died", "Strong, hulky.", "No-one", "Folk hero who looves to eat pie."));
         Separator leftNRight = new Separator();
         leftNRight.setOrientation(Orientation.VERTICAL);
         Separator left = new Separator();
         Separator right = new Separator();
+        Separator right2 = new Separator();
 
         VBox leftVBOX = new VBox(20);
         leftVBOX.getChildren().addAll(top, abs);
         leftVBOX.getChildren().add(1, left);
         VBox rightVBOX = new VBox(20);
-        rightVBOX.getChildren().addAll(armour, weapons);
+        rightVBOX.getChildren().addAll(armour, weapons, bg);
         rightVBOX.getChildren().add(1,right);
+        rightVBOX.getChildren().add(3, right2);
 
         HBox fin = new HBox(30);
         fin.setPadding(new Insets(20));

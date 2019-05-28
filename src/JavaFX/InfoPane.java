@@ -3,18 +3,16 @@ package JavaFX;
 import Classes.Abilities.abType;
 import Classes.Abilities.abilities;
 import Classes.Abilities.abilityMods;
+import Classes.Personality;
 import Classes.buy.armour.Armour;
-import Classes.buy.armour.container;
 import Classes.buy.weapons.Weapon;
 import Classes.stealth;
-import com.sun.org.apache.xpath.internal.operations.Gt;
-import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 
 public class InfoPane {
 
@@ -50,7 +48,6 @@ public class InfoPane {
 
         return fin;
     }
-
     public static VBox showAbilities (abilities abs)
     {
         abilityMods abMods = new abilityMods(abs);
@@ -68,7 +65,17 @@ public class InfoPane {
 
             Label aA = new Label(abs.get(a) + "");
             GridPane.setConstraints(aA, 1, 0);
-            Label abA = new Label(abMods.get(a) + "");
+
+            int abMod = abMods.get(a);
+            String abMo = "";
+            if (abMod > 0) {
+                abMo = "+" + abMod;
+            } else {
+                abMo = abMod + "";
+            }
+
+
+            Label abA = new Label(abMo);
             GridPane.setConstraints(abA, 1, 1);
 
             temp.getChildren().addAll(aL, abL, aA, abA);
@@ -119,7 +126,7 @@ public class InfoPane {
 
             Label minStrL = new Label("Minimum strength: ");
             GridPane.setConstraints(minStrL, 0, 4);
-            Label minStrA = new Label(a.getStr() + "");
+            Label minStrA = new Label("Str" + a.getStr());
             GridPane.setConstraints(minStrA, 1, 4);
 
             Label stealthL = new Label("Stealth: ");
@@ -128,7 +135,7 @@ public class InfoPane {
             if(a.getStealth() == stealth.none)
                 steathA = new Label("N/A");
             else
-                steathA = new Label("Str" + a.getStealth());
+                steathA = new Label("" + a.getStealth());
             GridPane.setConstraints(steathA, 1, 5);
 
             temp.getChildren().addAll(name, weightL, weightA, costL, costA, acL, acA, minStrL, minStrA, stealthL, steathA);
@@ -180,6 +187,51 @@ public class InfoPane {
         HBox fin = new HBox(10);
         fin.getChildren().addAll(nas);
         return fin;
+    }
+
+    public static GridPane showBG(Personality p) {
+        GridPane fin = new GridPane();
+
+        Label traitsL = new Label("Personality Traits: ");
+        GridPane.setConstraints(traitsL, 0, 0);
+        ScrollPane traitsA = Personality.getTxtArea(p.getPersonalityTraits());
+        GridPane.setConstraints(traitsA, 1, 0, 1, 2);
+
+        Label idealsL = new Label("Ideals: ");
+        GridPane.setConstraints(idealsL, 0, 2);
+        ScrollPane idealA = Personality.getTxtArea(p.getIdeals());
+        GridPane.setConstraints(idealA, 1, 2, 1, 2);
+
+        Label bondsL = new Label("Bonds: ");
+        GridPane.setConstraints(bondsL, 0, 4);
+        ScrollPane bondsA = Personality.getTxtArea(p.getBonds());
+        GridPane.setConstraints(bondsA, 1, 4, 1, 2);
+
+        Label flawsL = new Label("Flaws: ");
+        GridPane.setConstraints(flawsL, 0, 6);
+        ScrollPane flawsA = Personality.getTxtArea(p.getFlaws());
+        GridPane.setConstraints(flawsA, 1, 6, 1, 2);
+
+        Label appearL = new Label("Apperance: ");
+        GridPane.setConstraints(appearL, 0, 8);
+        ScrollPane appearA = Personality.getTxtArea(p.getAppearance());
+        GridPane.setConstraints(appearA, 1, 8, 1, 2);
+
+        Label alliesL = new Label("Allies: ");
+        GridPane.setConstraints(alliesL, 0, 10);
+        ScrollPane alliesa = Personality.getTxtArea(p.getAllies());
+        GridPane.setConstraints(alliesa, 1, 10, 1, 2);
+
+        Label bgL = new Label("Backstory: ");
+        GridPane.setConstraints(bgL, 0, 12);
+        ScrollPane bgA = Personality.getTxtArea(p.getBackstory());
+        GridPane.setConstraints(bgA, 1, 12, 1, 2);
+
+
+        fin.getChildren().addAll(traitsL, traitsA, idealsL, idealA, bondsL, bondsA, flawsL, flawsA, appearL, appearA, alliesL, alliesa, bgL, bgA);
+
+        return fin;
+
     }
 
 }
